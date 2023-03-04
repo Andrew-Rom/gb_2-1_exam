@@ -95,11 +95,14 @@ def show_all():
 def search_by_id():
     read_file()
     search = input('Enter ID of note for searching: ')
-    result = searching(id_note=search)
-    if len(result) == 0:
-        print('Nothing was found.')
+    if search == '':
+        ui.show_error_input_msg()
     else:
-        print(tabulate(result, headers=headers, maxcolwidths=[None, None, None, 100]))
+        result = searching(id_note=search)
+        if len(result) == 0:
+            print('Nothing was found.')
+        else:
+            print(tabulate(result, headers=headers, maxcolwidths=[None, None, None, 100]))
     input(ui.waiting_msg)
 
 
