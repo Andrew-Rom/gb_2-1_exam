@@ -166,7 +166,7 @@ def del_note():
         ask_user = input("Confirm deletion (y/n): ")
         if ask_user.lower() == 'y':
             note_date = datetime.now().strftime("%Y-%m-%d %H:%M")
-            notebook[del_id_index] = [str(id_num), note_date, '<Deleted>', '']
+            notebook[del_id_index] = [str(id_num), '', f'<Deleted {note_date}>', '']
             log.logging.info(f'Deleted note with id {del_id_index}')
             write_file(notebook)
             print(f'Note with ID {id_num} was deleted successfully!')
