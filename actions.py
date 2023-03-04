@@ -105,8 +105,8 @@ def search_by_id():
 
 def search_by_date():
     read_file()
-    search = input('Enter a date (in format YYYY-MM_DD, of creating or modifying for searching\n'
-                   '(in format YYYY-MM-DD, where YYYY - year, MM - month, DD - day, e.g. 2020.01.01): ')
+    search = input('Enter a date of creating or modifying for searching\n'
+                   '(in format YYYY-MM-DD, where YYYY - year, MM - month, DD - day, e.g. 2020-01-01): ')
     search_result = searching(date_note=search)
     if len(search_result) == 0:
         print('Nothing was found.')
