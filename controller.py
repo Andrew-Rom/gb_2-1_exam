@@ -4,6 +4,7 @@ import actions as db
 
 
 def operations():
+    """Show the main menu."""
     while True:
         ui.show_menu()
         user_command = input(ui.select_msg)
