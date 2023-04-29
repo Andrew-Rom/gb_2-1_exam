@@ -12,6 +12,7 @@ headers = ['ID', 'Date', 'Title', 'Text']
 
 
 def read_file():
+    """Get data from file if it exists or create new database file if the one does not exist."""
     global notebook, db_file, last_id, headers
     while True:
         if path.exists(db_file):
@@ -50,6 +51,7 @@ def read_file():
 
 
 def write_file(new_db):
+    """Save database file."""
     with open(db_file, mode='w', encoding='utf-8', newline='') as file:
         writer = csv.writer(file, delimiter=';')
         for line in new_db:
@@ -58,6 +60,7 @@ def write_file(new_db):
 
 
 def add_data(new_data):
+    """Add new data to database file."""
     with open(db_file, mode='a', encoding='utf-8', newline='\n') as file:
         writer = csv.writer(file, delimiter=';')
         writer.writerow(new_data)
@@ -65,6 +68,7 @@ def add_data(new_data):
 
 
 def create_note():
+    """Create new note."""
     read_file()
     id_num = last_id + 1
     note_date = datetime.now().strftime("%Y-%m-%d %H:%M")
@@ -78,6 +82,7 @@ def create_note():
 
 
 def find_note(num_id):
+    """Find the entry by its id."""
     read_file()
     index_id = 0
     for i in range(1, len(notebook)):
@@ -86,6 +91,7 @@ def find_note(num_id):
 
 
 def show_all():
+    """Show all notes from database."""
     read_file()
     result = [[line[i] for i in range(3)] for line in notebook]
     print(tabulate(result, headers='firstrow', tablefmt='pipe', stralign='center'))
@@ -93,6 +99,7 @@ def show_all():
 
 
 def search_by_id():
+    """Find the note by its id and show it."""
     read_file()
     search = input('Enter ID of note for searching: ')
     if search == '':
@@ -107,6 +114,7 @@ def search_by_id():
 
 
 def search_by_date():
+    """Select notes by date of creating or modifying and show them."""
     read_file()
     search = input('Enter a date of creating or modifying for searching\n'
                    '(in format YYYY-MM-DD, where YYYY - year, MM - month, DD - day, e.g. 2020-01-01): ')
@@ -120,6 +128,7 @@ def search_by_date():
 
 
 def searching(id_note='', date_note=''):
+    """Selecting notes by id or by date of creating or modifying."""
     result = []
     for row in notebook:
         if id_note != '' and row[0] != id_note: continue
@@ -129,6 +138,7 @@ def searching(id_note='', date_note=''):
 
 
 def change_note():
+    """Modify data of the note."""
     id_num = input('Enter ID of editing note: ')
     ch_id_ind = find_note(id_num)
     if ch_id_ind == 0:
@@ -156,6 +166,7 @@ def change_note():
 
 
 def del_note():
+    """Deleting the note."""
     id_num = input('Enter ID of deleting note: ')
     del_id_index = find_note(id_num)
     if del_id_index == 0:

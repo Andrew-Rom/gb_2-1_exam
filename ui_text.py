@@ -1,3 +1,6 @@
+"""A set for text user interface."""
+
+
 def show_menu():
     print("\n"
           "************************************************************\n"
